@@ -50,8 +50,10 @@ def setToEaten(d, l):
         conn.commit()
     
 def revertEatenValues():
-    cur = connectDatabase('dinners.db')
+    conn = sqlite3.connect('dinners.db')
+    cur = conn.cursor()
     cur.execute('UPDATE MEALS SET EATEN = 0')
+    conn.commit()
 
 def createDinnerList():
     conn = sqlite3.connect('dinners.db')
