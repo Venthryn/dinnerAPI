@@ -30,7 +30,7 @@ def randDinners():
     allDinners = cur.execute('SELECT ID, FOOD FROM MEALS WHERE EATEN = 0')
     allDinners = dict(allDinners)
     dinners = []
-    n = random.sample(range(1, len(allDinners)), 7)
+    n = random.sample(list(allDinners), 5)
     for i in n:
         dinners.append(allDinners[i])
     setToEaten(allDinners, dinners)
