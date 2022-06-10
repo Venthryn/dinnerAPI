@@ -29,10 +29,17 @@ def randDinners():
     cur = sqlite3.connect('dinners.db')
     allDinners = cur.execute('SELECT ID, FOOD FROM MEALS WHERE EATEN = 0')
     allDinners = dict(allDinners)
-    dinners = []
-    n = random.sample(list(allDinners), 5)
-    for i in n:
-        dinners.append(allDinners[i])
+    acceptDinners = False
+    while (acceptDinners == False):
+        dinners = []
+        n = random.sample(list(allDinners), 5)
+        for i in n:
+            dinners.append(allDinners[i])
+        print(dinners)
+        print("Is this dinner list okay? (y/n)")
+        inp = input()
+        if (inp == 'y'):
+            acceptDinners = True
     setToEaten(allDinners, dinners)
     #dinners = random.sample(allDinners, 7)
     return dinners
@@ -90,4 +97,5 @@ if __name__ == '__main__':
     #createDinnerList()
     #print('dinners: ', randDinners())
     #createDinnerList()
+    revertEatenValues()
     resetDinnerList()
